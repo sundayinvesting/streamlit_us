@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Unnamed: 0,Date,RS55>0,RSI>50,RSI>60,EMA20,EMA50,EMA100,EMA200,Super Trend
+0,0,2023-04-17,54,82,46,80,74,60,64,66
+1,1,2023-04-18,56,80,42,80,62,58,68,66
+2,2,2023-04-19,56,82,36,82,64,54,66,66
+3,3,2023-04-20,58,76,36,78,64,54,62,66
+4,4,2023-04-21,54,74,22,70,64,50,64,64
+5,5,2023-04-24,50,72,40,74,66,56,64,68
+6,6,2023-04-25,48,78,40,78,70,60,60,72
+7,7,2023-04-26,54,82,48,82,68,58,62,72
+8,8,2023-04-27,62,86,56,88,76,62,66,78
+9,9,2023-04-28,62,86,62,88,82,72,68,82
+10,10,2023-05-02,64,90,74,92,84,74,70,86
+11,11,2023-05-03,62,84,60,86,82,70,70,84
+12,12,2023-05-04,60,92,64,96,86,74,74,86
+13,13,2023-05-05,60,80,52,82,76,70,74,82
+14,14,2023-05-08,60,90,62,90,88,78,78,82
+15,15,2023-05-09,62,90,70,92,90,82,84,82
+16,16,2023-05-10,62,90,70,92,90,84,82,82
+17,17,2023-05-11,62,82,72,84,86,80,82,82
+18,18,2023-05-12,60,82,58,84,82,78,76,80
+19,19,2023-05-15,60,84,58,80,82,78,78,80
+</div>
+    </body>
+</html>

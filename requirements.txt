@@ -1,0 +1,14 @@
+pandas
+numpy
+matplotlib
+scipy
+scikit-learn
+plotly
+Pillow
+kaleido
+requests
+PyGithub
+yfinance
+pandas-ta
+streamlit
+stocktrends
